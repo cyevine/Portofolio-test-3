@@ -125,16 +125,6 @@
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
 
-    // ⏪ Restore state if user already started
-    if (localStorage.getItem("started") === "true") {
-      startButton.style.display = 'none';
-      ocImage.style.display = 'block';
-      nameBox.style.display = 'block';
-      dialogueBox.style.display = 'block';
-      dialogueBox.style.pointerEvents = 'none';
-      optionsBox.style.display = 'flex';
-    }
-
     startButton.addEventListener('click', () => {
       bgm.play();
       audioToggle.textContent = '🔊';
