@@ -1,35 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Komisi</title>
-  <style>
-    body {
-      margin: 0;
-      padding: 40px;
-      background-color: #fff8f0;
-      font-family: 'Arial', sans-serif;
-      color: #333;
+<div id="choosePage" style="display: block;">
+  <p>Pilih halaman:</p>
+  <button onclick="goToScene('commissionWIP')">Komisi WIP</button>
+  <button onclick="goToScene('galleryPage')">Galeri</button>
+</div>
+
+<div id="commissionWIP" style="display: none;">
+  <h2>Halaman Komisi WIP</h2>
+  <p>Ini halaman WIP komisi~</p>
+  <button onclick="goBack()">Kembali</button>
+</div>
+
+<div id="galleryPage" style="display: none;">
+  <h2>Halaman Galeri</h2>
+  <p>Ini halaman galeri!</p>
+  <button onclick="goBack()">Kembali</button>
+</div>
+
+<script>
+  let previousScene = null;
+
+  function showScene(id) {
+    const scenes = ['choosePage', 'commissionWIP', 'galleryPage'];
+    scenes.forEach(scene => {
+      document.getElementById(scene).style.display = 'none';
+    });
+    document.getElementById(id).style.display = 'block';
+  }
+
+  function goToScene(id) {
+    previousScene = 'choosePage'; // karena semua tombol berasal dari halaman pilihan
+    showScene(id);
+  }
+
+  function goBack() {
+    if (previousScene) {
+      showScene(previousScene);
     }
-    h1 {
-      color: #008c99;
-      font-size: 2rem;
-    }
-    a {
-      display: inline-block;
-      margin-top: 20px;
-      padding: 10px 20px;
-      background-color: #008c99;
-      color: white;
-      text-decoration: none;
-      border-radius: 8px;
-    }
-  </style>
-</head>
-<body>
-  <h1>Halaman Komisi</h1>
-  <p>Di sini nanti akan dijelaskan info tentang komisi: harga, tipe gambar, dan lain-lain nich ;3</p>
-  <a href="index.html">⬅ Kembali</a>
-</body>
-</html>
+  }
+</script>
