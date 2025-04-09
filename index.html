@@ -13,9 +13,11 @@
     }
     .character {
       position: absolute;
-      bottom: 0;
-      right: 0;
-      height: 70%;
+      bottom: 220px;
+      right: 20px;
+      height: 60%;
+      z-index: 1;
+      display: none;
     }
     .dialogue-box {
       position: absolute;
@@ -30,16 +32,20 @@
       box-sizing: border-box;
       transition: opacity 0.5s ease-in-out;
       cursor: pointer;
+      z-index: 2;
     }
     .name-box {
       position: absolute;
       bottom: 230px;
       right: 20px;
       background-color: white;
-      padding: 5px 15px;
-      border-radius: 5px;
+      padding: 15px 35px;
+      border-radius: 8px;
       font-weight: bold;
+      font-size: 1.3rem;
       border: 3px solid #008c99;
+      z-index: 2;
+      display: none;
     }
     .options-box {
       position: absolute;
@@ -48,17 +54,20 @@
       transform: translateX(-50%);
       display: none;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
       z-index: 2;
+      width: 80%;
+      max-width: 600px;
     }
     .option-btn {
       background-color: white;
       color: black;
       border: 3px solid #008c99;
-      border-radius: 8px;
-      padding: 10px 20px;
+      border-radius: 10px;
+      padding: 18px 25px;
       cursor: pointer;
       font-weight: bold;
+      font-size: 1.1rem;
       transition: background-color 0.3s;
     }
     .option-btn:hover {
@@ -94,13 +103,13 @@
   </style>
 </head>
 <body>
-  <img src="oe talking.png" alt="OC" class="character" />
+  <img src="oe smile.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
   <div class="options-box" id="options">
-    <button class="option-btn" onclick="goTo('commission.html')">Mau komisi nich</button>
-    <button class="option-btn" onclick="goTo('wip.html')">Mau lihat WIP nich</button>
-    <button class="option-btn" onclick="goTo('gallery.html')">Mau lihat galeri nich</button>
+    <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
+    <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
+    <button class="option-btn" onclick="goTo('gallery.html')">Mau liat galerimu</button>
   </div>
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
@@ -114,11 +123,14 @@
     const dialogueBox = document.getElementById('dialogue');
     const startButton = document.getElementById('startButton');
     const nameBox = document.getElementById('nameBox');
+    const ocImage = document.getElementById('ocImage');
 
     startButton.addEventListener('click', () => {
       bgm.play();
       startButton.style.display = 'none';
       dialogueBox.style.display = 'block';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
     });
 
     dialogueBox.addEventListener('click', () => {
