@@ -3,129 +3,121 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>VN Style Portfolio</title>
+  <title>VN Portfolio - Opening</title>
   <style>
-    * {
-      box-sizing: border-box;
+    body {
       margin: 0;
-      padding: 0;
-    }
-    html, body {
-      width: 100%;
-      height: 100%;
-      background-color: #008C99;
-      font-family: sans-serif;
-    }
-    #container {
-      position: relative;
-      width: 100%;
-      height: 100vh;
+      background-color: #008c99;
+      font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
-    #character {
+    .character {
       position: absolute;
-      right: 40px;
-      bottom: 130px;
-      height: 60%;
-      z-index: 3;
+      bottom: 0;
+      right: 0;
+      height: 70%;
     }
-    #name-box {
-      position: absolute;
-      right: 160px;
-      bottom: 260px;
-      background: white;
-      color: black;
-      font-weight: bold;
-      padding: 4px 12px;
-      border-radius: 10px;
-      z-index: 4;
-    }
-    #dialogue-box {
+    .dialogue-box {
       position: absolute;
       bottom: 20px;
+      left: 20px;
+      right: 20px;
+      height: 160px;
+      background-color: white;
+      border: 5px solid #008c99;
+      border-radius: 10px;
+      padding: 20px;
+      box-sizing: border-box;
+      transition: opacity 0.5s ease-in-out;
+    }
+    .name-box {
+      position: absolute;
+      bottom: 190px;
+      left: 20px;
+      background-color: white;
+      padding: 5px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+      border: 3px solid #008c99;
+    }
+    .options-box {
+      position: absolute;
+      bottom: 200px;
       left: 50%;
       transform: translateX(-50%);
-      width: 90%;
-      background: white;
-      padding: 20px;
-      border-radius: 16px;
+      display: none;
+      flex-direction: column;
+      gap: 10px;
       z-index: 2;
     }
-    #choices {
-      position: absolute;
-      bottom: 150px;
-      left: 50%;
-      transform: translateX(-50%);
-      display: flex;
-      gap: 12px;
-      z-index: 3;
-    }
-    .choice {
-      background: white;
-      padding: 10px 16px;
-      border-radius: 12px;
-      cursor: pointer;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
-      transition: transform 0.2s;
-    }
-    .choice:hover {
-      transform: scale(1.05);
-    }
-    #audio-controls {
-      position: absolute;
-      top: 20px;
-      right: 20px;
-      z-index: 5;
-    }
-    button {
-      background: white;
-      border: none;
-      padding: 8px 12px;
+    .option-btn {
+      background-color: white;
+      color: black;
+      border: 3px solid #008c99;
       border-radius: 8px;
+      padding: 10px 20px;
       cursor: pointer;
       font-weight: bold;
+      transition: background-color 0.3s;
+    }
+    .option-btn:hover {
+      background-color: #e0f7fa;
+    }
+    .audio-controls {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+    }
+    .audio-controls button {
+      background: white;
+      border: 2px solid #008c99;
+      padding: 5px 10px;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
-  <div id="container">
-    <img id="character" src="assets/oc.png" alt="OC" />
-    <div id="name-box">Cyevine</div>
-    <div id="dialogue-box">Wello, welcome to my portofolio</div>
-    <div id="choices">
-      <div class="choice" onclick="goToPage('commission')">Komisi</div>
-      <div class="choice" onclick="goToPage('wip')">WIP</div>
-      <div class="choice" onclick="goToPage('gallery')">Galeri</div>
-    </div>
-    <div id="audio-controls">
-      <button onclick="toggleAudio()" id="audio-btn">🔈</button>
-    </div>
-    <audio id="bgm" src="assets/backsound.mp3" loop></audio>
+  <img src="your-oc-image.png" alt="OC" class="character" />
+  <div class="name-box">OCku</div>
+  <div class="dialogue-box" id="dialogue">Selamat datang di portofolioku! Mau lihat yang mana duluan?</div>
+  <div class="options-box" id="options">
+    <button class="option-btn" onclick="goTo('commission.html')">Komisi</button>
+    <button class="option-btn" onclick="goTo('wip.html')">WIP</button>
+    <button class="option-btn" onclick="goTo('gallery.html')">Galeri</button>
   </div>
-
+  <div class="audio-controls">
+    <button onclick="toggleAudio()" id="audioToggle">🔊</button>
+  </div>
+  <audio id="bgm" src="your-bgm.mp3" loop></audio>
   <script>
     const bgm = document.getElementById('bgm');
-    const audioBtn = document.getElementById('audio-btn');
-    let isMuted = false;
-
-    function toggleAudio() {
-      isMuted = !isMuted;
-      bgm.muted = isMuted;
-      audioBtn.textContent = isMuted ? '🔇' : '🔈';
-    }
+    const audioToggle = document.getElementById('audioToggle');
+    const optionsBox = document.getElementById('options');
 
     window.addEventListener('load', () => {
+      bgm.play();
       setTimeout(() => {
-        bgm.play();
-      }, 300); // Start after slight delay
+        optionsBox.style.display = 'flex';
+      }, 2000); // Delay munculnya opsi setelah dialog tampil
     });
 
-    function goToPage(page) {
-      // Simulasi transisi ke halaman berikutnya
+    function toggleAudio() {
+      if (bgm.paused) {
+        bgm.play();
+        audioToggle.textContent = '🔊';
+      } else {
+        bgm.pause();
+        audioToggle.textContent = '🔇';
+      }
+    }
+
+    function goTo(page) {
       document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
       setTimeout(() => {
-        window.location.href = page + '.html';
+        window.location.href = page;
       }, 500);
     }
   </script>
