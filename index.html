@@ -158,5 +158,28 @@
       }, 500);
     }
   </script>
+  <script>
+  window.addEventListener('message', function(event) {
+    if (event.data === 'balikKePilihan') {
+      tampilkanPilihan(); // ini function yang nanti kita buat
+    }
+  });
+
+  function tampilkanPilihan() {
+    // Ini contoh isi fungsi buat nampilin pilihan Komisi/WIP/Galeri
+    document.getElementById("scene-wrapper").innerHTML = `
+      <div class="dialogue-box">
+        <div class="name-box">OC</div>
+        <p>Mau liat yang mana dulu nich?</p>
+      </div>
+      <div class="option-box">
+        <button onclick="window.location.href='komisi.html'">Komisi</button>
+        <button onclick="window.location.href='wip.html'">WIP</button>
+        <button onclick="window.location.href='galeri.html'">Galeri</button>
+      </div>
+    `;
+  }
+</script>
+
 </body>
 </html>
