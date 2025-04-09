@@ -22,7 +22,7 @@
       bottom: 20px;
       left: 20px;
       right: 20px;
-      height: 160px;
+      height: 200px;
       background-color: white;
       border: 5px solid #008c99;
       border-radius: 10px;
@@ -32,8 +32,8 @@
     }
     .name-box {
       position: absolute;
-      bottom: 190px;
-      left: 20px;
+      bottom: 230px;
+      right: 20px;
       background-color: white;
       padding: 5px 15px;
       border-radius: 5px;
@@ -42,7 +42,7 @@
     }
     .options-box {
       position: absolute;
-      bottom: 200px;
+      bottom: 240px;
       left: 50%;
       transform: translateX(-50%);
       display: none;
@@ -80,8 +80,8 @@
 </head>
 <body>
   <img src="your-oc-image.png" alt="OC" class="character" />
-  <div class="name-box">Cyevine</div>
-  <div class="dialogue-box" id="dialogue">Welcomeeeee!!! Maw liat yang mana dulu nich?</div>
+  <div class="name-box">OCku</div>
+  <div class="dialogue-box" id="dialogue">Selamat datang di portofolioku! Mau lihat yang mana duluan?</div>
   <div class="options-box" id="options">
     <button class="option-btn" onclick="goTo('commission.html')">Komisi</button>
     <button class="option-btn" onclick="goTo('wip.html')">WIP</button>
@@ -95,12 +95,16 @@
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
     const optionsBox = document.getElementById('options');
+    const dialogueBox = document.getElementById('dialogue');
 
     window.addEventListener('load', () => {
       bgm.play();
-      setTimeout(() => {
+    });
+
+    dialogueBox.addEventListener('click', () => {
+      if (optionsBox.style.display !== 'flex') {
         optionsBox.style.display = 'flex';
-      }, 2000); // Delay munculnya opsi setelah dialog tampil
+      }
     });
 
     function toggleAudio() {
