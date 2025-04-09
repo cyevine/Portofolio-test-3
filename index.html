@@ -77,29 +77,48 @@
       font-weight: bold;
       cursor: pointer;
     }
+    .start-button {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      padding: 20px 40px;
+      font-size: 1.2rem;
+      background-color: white;
+      border: 3px solid #008c99;
+      border-radius: 10px;
+      font-weight: bold;
+      cursor: pointer;
+      z-index: 10;
+    }
   </style>
 </head>
 <body>
   <img src="oe talking.png" alt="OC" class="character" />
-  <div class="name-box">Cyevine</div>
-  <div class="dialogue-box" id="dialogue">Welcome! Mau lihat yang mana dulu nich?</div>
+  <div class="name-box" id="nameBox">Cyevine</div>
+  <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
   <div class="options-box" id="options">
-    <button class="option-btn" onclick="goTo('commission.html')">Komisi</button>
-    <button class="option-btn" onclick="goTo('wip.html')">WIP</button>
-    <button class="option-btn" onclick="goTo('gallery.html')">Galeri</button>
+    <button class="option-btn" onclick="goTo('commission.html')">Mau komisi nich</button>
+    <button class="option-btn" onclick="goTo('wip.html')">Mau lihat WIP nich</button>
+    <button class="option-btn" onclick="goTo('gallery.html')">Mau lihat galeri nich</button>
   </div>
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
+  <button class="start-button" id="startButton">Start</button>
   <audio id="bgm" src="your-bgm.mp3" loop></audio>
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
     const optionsBox = document.getElementById('options');
     const dialogueBox = document.getElementById('dialogue');
+    const startButton = document.getElementById('startButton');
+    const nameBox = document.getElementById('nameBox');
 
-    window.addEventListener('load', () => {
+    startButton.addEventListener('click', () => {
       bgm.play();
+      startButton.style.display = 'none';
+      dialogueBox.style.display = 'block';
     });
 
     dialogueBox.addEventListener('click', () => {
