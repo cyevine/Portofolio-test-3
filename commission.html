@@ -16,28 +16,20 @@
       color: #008c99;
       font-size: 2rem;
     }
-    button {
+    a {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
       background-color: #008c99;
       color: white;
-      border: none;
+      text-decoration: none;
       border-radius: 8px;
-      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <h1>Halaman Komisi</h1>
   <p>Di sini nanti akan dijelaskan info tentang komisi: harga, tipe gambar, dan lain-lain nich ;3</p>
-  <button onclick="goBack()">⬅ Kembali</button>
-
-  <script>
-    function goBack() {
-      window.parent.postMessage('balikKePilihan', '*');
-    }
-  </script>
+  <a href="index.html">⬅ Kembali</a>
 </body>
 </html>
-
