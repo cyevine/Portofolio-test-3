@@ -16,20 +16,27 @@
       color: #007acc;
       font-size: 2rem;
     }
-    a {
+    button {
       display: inline-block;
       margin-top: 20px;
       padding: 10px 20px;
       background-color: #007acc;
       color: white;
-      text-decoration: none;
+      border: none;
       border-radius: 8px;
+      cursor: pointer;
     }
   </style>
 </head>
 <body>
   <h1>Galeri Karya</h1>
   <p>Nah, boleh diliat-liat dulu nich!</p>
-  <a href="index.html#options">⬅ Kembali</a>
+  <button onclick="goBack()">⬅ Kembali</button>
+
+  <script>
+    function goBack() {
+      window.parent.postMessage('balikKePilihan', '*');
+    }
+  </script>
 </body>
 </html>
