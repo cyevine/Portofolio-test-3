@@ -63,6 +63,27 @@
     .modal:target {
       display: flex;
     }
+
+    /* Sosial Media Icons */
+    .social-icons {
+      position: fixed;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
+      cursor: pointer;
+    }
+
+    .social-icons img:hover {
+      transform: scale(1.2);
+    }
   </style>
 </head>
 <body>
@@ -73,7 +94,6 @@
     <a href="#komisi1"><img src="komisi1.jpeg" alt="Komisi 1" /></a>
     <a href="#komisi2"><img src="komisi2.jpeg" alt="Komisi 2" /></a>
     <a href="#komisi3"><img src="komisi3.jpeg" alt="Komisi 3" /></a>
-    <!-- Tambah gambar lain di sini -->
   </div>
 
   <div id="komisi1" class="modal" onclick="location.href='#'">
@@ -87,5 +107,18 @@
   </div>
 
   <a href="index.html">⬅ Kembali</a>
+
+  <!-- Sosmed Icons -->
+  <div class="social-icons">
+    <a href="https://twitter.com/akunmu" target="_blank">
+      <img src="icon-twitter.svg" alt="Twitter" />
+    </a>
+    <a href="https://instagram.com/akunmu" target="_blank">
+      <img src="icon-instagram.svg" alt="Instagram" />
+    </a>
+    <a href="https://discord.com/users/IDmu" target="_blank">
+      <img src="icon-discord.svg" alt="Discord" />
+    </a>
+  </div>
 </body>
 </html>
