@@ -10,6 +10,8 @@
       background-color: #008c99;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
     }
     .character {
       position: absolute;
@@ -125,6 +127,16 @@
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
 
+    window.addEventListener('DOMContentLoaded', () => {
+      if (sessionStorage.getItem('fadeIn') === 'true') {
+        document.body.style.opacity = 1;
+        sessionStorage.removeItem('fadeIn');
+      } else {
+        // Jika bukan dari navigasi goTo, langsung tampil (misal akses langsung halaman ini)
+        document.body.style.opacity = 1;
+      }
+    });
+
     startButton.addEventListener('click', () => {
       bgm.play();
       audioToggle.textContent = '🔊';
@@ -132,7 +144,7 @@
       dialogueBox.style.display = 'block';
       ocImage.style.display = 'block';
       nameBox.style.display = 'block';
-      localStorage.setItem("started", "true"); // 🔐 Save state
+      localStorage.setItem("started", "true");
     });
 
     dialogueBox.addEventListener('click', () => {
@@ -153,8 +165,8 @@
     }
 
     function goTo(page) {
-      document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
+      sessionStorage.setItem('fadeIn', 'true');
       setTimeout(() => {
         window.location.href = page;
       }, 500);
