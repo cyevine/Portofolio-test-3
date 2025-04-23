@@ -81,13 +81,9 @@
     }
 
     .audio-controls {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      width: 100%;
-      background: #eee;
-      padding: 10px;
-      box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+      position: absolute;
+      top: 10px;
+      right: 10px;
     }
 
     .audio-controls button {
@@ -113,33 +109,9 @@
       cursor: pointer;
       z-index: 10;
     }
-
-    nav {
-      background-color: #333;
-      color: white;
-      padding: 10px;
-      display: flex;
-      justify-content: space-around;
-    }
-
-    nav a {
-      color: white;
-      text-decoration: none;
-      padding: 5px 10px;
-    }
-
-    nav a:hover {
-      background-color: #575757;
-      border-radius: 5px;
-    }
-
-    #content {
-      padding: 20px;
-    }
   </style>
 </head>
 <body>
-  <!-- Karakter, Dialog, dan Navigasi -->
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
@@ -148,30 +120,44 @@
     <button class="option-btn" onclick="showPage('wipp')">Mau liat WIP-mu nich</button>
     <button class="option-btn" onclick="showPage('gallery')">Mau liat galerimu</button>
   </div>
-
-  <!-- Pemutar Musik -->
   <div class="audio-controls">
-    <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
+  <button class="start-button" id="startButton">Start</button>
+  <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
 
-  <!-- Navigasi -->
-  <nav>
-    <a href="#" onclick="showPage('home')">Home</a>
-    <a href="#" onclick="showPage('comission')">Comission</a>
-    <a href="#" onclick="showPage('wipp')">WIPP</a>
-    <a href="#" onclick="showPage('gallery')">Galeri</a>
-  </nav>
-
-  <!-- Konten Halaman -->
-  <div id="content">
+  <!-- Konten Dinamis -->
+  <div id="dynamic-content">
     <h1>Selamat datang di halaman utama!</h1>
-    <p>Ini adalah portofolio sederhana Anda. Gunakan navigasi di atas untuk menjelajahi halaman.</p>
+    <p>Pilih salah satu opsi di atas untuk melanjutkan.</p>
   </div>
 
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
+    const optionsBox = document.getElementById('options');
+    const dialogueBox = document.getElementById('dialogue');
+    const startButton = document.getElementById('startButton');
+    const nameBox = document.getElementById('nameBox');
+    const ocImage = document.getElementById('ocImage');
+    const dynamicContent = document.getElementById('dynamic-content');
+
+    startButton.addEventListener('click', () => {
+      bgm.play();
+      audioToggle.textContent = '🔊';
+      startButton.style.display = 'none';
+      dialogueBox.style.display = 'block';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
+      localStorage.setItem("started", "true"); // 🔐 Save state
+    });
+
+    dialogueBox.addEventListener('click', () => {
+      if (optionsBox.style.display !== 'flex') {
+        optionsBox.style.display = 'flex';
+        dialogueBox.style.pointerEvents = 'none';
+      }
+    });
 
     function toggleAudio() {
       if (bgm.paused) {
@@ -184,26 +170,25 @@
     }
 
     function showPage(page) {
-      const content = document.getElementById('content');
-      if (page === 'home') {
-        content.innerHTML = `
-          <h1>Selamat datang di halaman utama!</h1>
-          <p>Ini adalah portofolio sederhana Anda. Gunakan navigasi di atas untuk menjelajahi halaman.</p>
-        `;
-      } else if (page === 'comission') {
-        content.innerHTML = `
+      if (page === 'comission') {
+        dynamicContent.innerHTML = `
           <h1>Halaman Comission</h1>
           <p>Ini adalah halaman untuk komisi atau pemesanan karya.</p>
         `;
       } else if (page === 'wipp') {
-        content.innerHTML = `
+        dynamicContent.innerHTML = `
           <h1>Halaman WIPP</h1>
           <p>Ini adalah halaman untuk karya yang sedang dalam proses (Work In Progress).</p>
         `;
       } else if (page === 'gallery') {
-        content.innerHTML = `
+        dynamicContent.innerHTML = `
           <h1>Halaman Galeri</h1>
           <p>Ini adalah galeri untuk menampilkan hasil karya Anda.</p>
+        `;
+      } else {
+        dynamicContent.innerHTML = `
+          <h1>Selamat datang di halaman utama!</h1>
+          <p>Pilih salah satu opsi di atas untuk melanjutkan.</p>
         `;
       }
     }
