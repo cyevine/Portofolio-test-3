@@ -12,7 +12,6 @@
       overflow: hidden;
     }
 
-    /* AWAN */
     .cloud {
       position: absolute;
       top: 50px;
@@ -33,7 +32,6 @@
       background: white;
       width: 100px;
       height: 100px;
-      position: absolute;
       top: -30px;
       left: 30px;
       border-radius: 50%;
@@ -174,6 +172,15 @@
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
 
+    // Cek apakah halaman sudah dimulai sebelumnya
+    if (sessionStorage.getItem("started") === "true") {
+      startButton.style.display = 'none';
+      dialogueBox.style.display = 'block';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
+      optionsBox.style.display = 'flex';
+    }
+
     startButton.addEventListener('click', () => {
       bgm.play();
       audioToggle.textContent = '🔊';
@@ -181,7 +188,7 @@
       dialogueBox.style.display = 'block';
       ocImage.style.display = 'block';
       nameBox.style.display = 'block';
-      localStorage.setItem("started", "true");
+      sessionStorage.setItem("started", "true");
     });
 
     dialogueBox.addEventListener('click', () => {
@@ -202,12 +209,21 @@
     }
 
     function goTo(page) {
+      sessionStorage.setItem("lastPage", page);  // Menyimpan halaman terakhir yang dikunjungi
       document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
       setTimeout(() => {
         window.location.href = page;
       }, 500);
     }
+
+    // Fungsi untuk kembali ke halaman sebelumnya
+    window.onpopstate = function() {
+      const lastPage = sessionStorage.getItem("lastPage");
+      if (lastPage) {
+        window.location.href = lastPage;
+      }
+    };
   </script>
 </body>
 </html>
