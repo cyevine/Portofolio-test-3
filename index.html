@@ -10,9 +10,51 @@
       background-color: #008c99;
       font-family: 'Arial', sans-serif;
       overflow: hidden;
-      opacity: 0;
-      transition: opacity 0.5s ease-in-out;
     }
+
+    /* AWAN */
+    .cloud {
+      position: absolute;
+      top: 50px;
+      left: -200px;
+      width: 200px;
+      height: 80px;
+      background: white;
+      border-radius: 100px;
+      opacity: 0.8;
+      animation: floatCloud 60s linear infinite;
+      z-index: 0;
+    }
+
+    .cloud::before,
+    .cloud::after {
+      content: '';
+      position: absolute;
+      background: white;
+      width: 100px;
+      height: 100px;
+      position: absolute;
+      top: -30px;
+      left: 30px;
+      border-radius: 50%;
+    }
+
+    .cloud::after {
+      width: 120px;
+      height: 120px;
+      top: -40px;
+      left: 90px;
+    }
+
+    @keyframes floatCloud {
+      0% {
+        transform: translateX(-300px);
+      }
+      100% {
+        transform: translateX(110vw);
+      }
+    }
+
     .character {
       position: absolute;
       bottom: 220px;
@@ -105,6 +147,11 @@
   </style>
 </head>
 <body>
+  <!-- Awan -->
+  <div class="cloud"></div>
+  <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
+  <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
+
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
@@ -126,16 +173,6 @@
     const startButton = document.getElementById('startButton');
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
-
-    window.addEventListener('DOMContentLoaded', () => {
-      if (sessionStorage.getItem('fadeIn') === 'true') {
-        document.body.style.opacity = 1;
-        sessionStorage.removeItem('fadeIn');
-      } else {
-        // Jika bukan dari navigasi goTo, langsung tampil (misal akses langsung halaman ini)
-        document.body.style.opacity = 1;
-      }
-    });
 
     startButton.addEventListener('click', () => {
       bgm.play();
@@ -165,8 +202,8 @@
     }
 
     function goTo(page) {
+      document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
-      sessionStorage.setItem('fadeIn', 'true');
       setTimeout(() => {
         window.location.href = page;
       }, 500);
