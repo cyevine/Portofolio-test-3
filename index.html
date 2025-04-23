@@ -11,7 +11,6 @@
       font-family: 'Arial', sans-serif;
       overflow: hidden;
     }
-
     .character {
       position: absolute;
       bottom: 220px;
@@ -20,7 +19,6 @@
       z-index: 1;
       display: none;
     }
-
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -36,7 +34,6 @@
       cursor: pointer;
       z-index: 2;
     }
-
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -50,7 +47,6 @@
       z-index: 2;
       display: none;
     }
-
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -63,7 +59,6 @@
       width: 80%;
       max-width: 600px;
     }
-
     .option-btn {
       background-color: white;
       color: black;
@@ -75,17 +70,14 @@
       font-size: 1.1rem;
       transition: background-color 0.3s;
     }
-
     .option-btn:hover {
       background-color: #e0f7fa;
     }
-
     .audio-controls {
       position: absolute;
       top: 10px;
       right: 10px;
     }
-
     .audio-controls button {
       background: white;
       border: 2px solid #008c99;
@@ -94,7 +86,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .start-button {
       position: absolute;
       top: 50%;
@@ -116,22 +107,15 @@
   <div class="name-box" id="nameBox">Cyevine</div>
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
   <div class="options-box" id="options">
-    <button class="option-btn" onclick="showPage('comission')">Mau komisi dong</button>
-    <button class="option-btn" onclick="showPage('wipp')">Mau liat WIP-mu nich</button>
-    <button class="option-btn" onclick="showPage('gallery')">Mau liat galerimu</button>
+    <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
+    <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
+    <button class="option-btn" onclick="goTo('gallery.html')">Mau liat galerimu</button>
   </div>
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
   <button class="start-button" id="startButton">Start</button>
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
-
-  <!-- Konten Dinamis -->
-  <div id="dynamic-content">
-    <h1>Selamat datang di halaman utama!</h1>
-    <p>Pilih salah satu opsi di atas untuk melanjutkan.</p>
-  </div>
-
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
@@ -140,7 +124,6 @@
     const startButton = document.getElementById('startButton');
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
-    const dynamicContent = document.getElementById('dynamic-content');
 
     startButton.addEventListener('click', () => {
       bgm.play();
@@ -169,28 +152,12 @@
       }
     }
 
-    function showPage(page) {
-      if (page === 'comission') {
-        dynamicContent.innerHTML = `
-          <h1>Halaman Comission</h1>
-          <p>Ini adalah halaman untuk komisi atau pemesanan karya.</p>
-        `;
-      } else if (page === 'wipp') {
-        dynamicContent.innerHTML = `
-          <h1>Halaman WIPP</h1>
-          <p>Ini adalah halaman untuk karya yang sedang dalam proses (Work In Progress).</p>
-        `;
-      } else if (page === 'gallery') {
-        dynamicContent.innerHTML = `
-          <h1>Halaman Galeri</h1>
-          <p>Ini adalah galeri untuk menampilkan hasil karya Anda.</p>
-        `;
-      } else {
-        dynamicContent.innerHTML = `
-          <h1>Selamat datang di halaman utama!</h1>
-          <p>Pilih salah satu opsi di atas untuk melanjutkan.</p>
-        `;
-      }
+    function goTo(page) {
+      document.body.style.transition = 'opacity 0.5s';
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = page;
+      }, 500);
     }
   </script>
 </body>
