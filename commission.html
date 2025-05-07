@@ -64,38 +64,25 @@
       display: flex;
     }
 
-    /* Style untuk tombol musik */
-    #music-toggle {
+    /* Sosial Media Icons */
+    .social-icons {
       position: fixed;
-      top: 20px;
-      right: 20px;
-      padding: 12px 24px;
-      background-color: #c770a2; /* Warna yang sesuai dengan index.html */
-      color: white;
-      font-size: 1rem;
-      border-radius: 8px;
+      bottom: 20px;
+      left: 20px;
+      display: flex;
+      gap: 12px;
+      z-index: 1000;
+    }
+
+    .social-icons img {
+      width: 32px;
+      height: 32px;
+      transition: transform 0.3s ease;
       cursor: pointer;
-      border: none;
-      transition: background-color 0.3s ease;
     }
 
-    #music-toggle:hover {
-      background-color: #9e4e78; /* Efek hover */
-    }
-
-    /* Style tombol sosial media */
-    .social-buttons a {
-      font-size: 16px; /* Ukuran tetap seperti sebelumnya */
-      padding: 10px;
-      margin: 5px;
-      background-color: #007acc;
-      color: white;
-      border-radius: 50%;
-      text-decoration: none;
-    }
-
-    .social-buttons a:hover {
-      background-color: #005f8c;
+    .social-icons img:hover {
+      transform: scale(1.2);
     }
   </style>
 </head>
@@ -121,39 +108,17 @@
 
   <a href="index.html">⬅ Kembali</a>
 
-  <!-- Pemutar Musik -->
-  <audio id="background-music" loop>
-    <source src="background-music.mp3" type="audio/mp3" />
-  </audio>
-  <button id="music-toggle">Play Music</button>
-
-  <!-- Tombol Sosial Media -->
-  <div class="social-buttons">
-    <a href="https://facebook.com" target="_blank">F</a>
-    <a href="https://twitter.com" target="_blank">T</a>
-    <a href="https://instagram.com" target="_blank">I</a>
+  <!-- Sosmed Icons -->
+  <div class="social-icons">
+    <a href="https://twitter.com/hudehellaryu" target="_blank">
+      <img src="x.jpg" alt="Twitter" />
+    </a>
+    <a href="https://instagram.com/hudehellaryu" target="_blank">
+      <img src="instagram.png" alt="Instagram" />
+    </a>
+   <a href="https://discord.gg/b3n2GA4yPS" target="_blank">
+      <img src="discord.svg" alt="Discord" />
+    </a>
   </div>
-
-  <script>
-    // Pemutar musik dan kontrol tombol
-    const musicToggle = document.getElementById('music-toggle');
-    const backgroundMusic = document.getElementById('background-music');
-
-    musicToggle.addEventListener('click', function () {
-      if (backgroundMusic.paused) {
-        backgroundMusic.play();
-        musicToggle.textContent = 'Pause Music';
-      } else {
-        backgroundMusic.pause();
-        musicToggle.textContent = 'Play Music';
-      }
-    });
-
-    // Memulai musik saat halaman dimuat
-    window.onload = function () {
-      backgroundMusic.play();
-      musicToggle.textContent = 'Pause Music';
-    };
-  </script>
 </body>
 </html>
