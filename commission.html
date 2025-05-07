@@ -64,25 +64,23 @@
       display: flex;
     }
 
-    /* Sosial Media Icons */
-    .social-icons {
+    /* Style untuk tombol musik */
+    #music-toggle {
       position: fixed;
       bottom: 20px;
-      left: 20px;
-      display: flex;
-      gap: 12px;
-      z-index: 1000;
-    }
-
-    .social-icons img {
-      width: 32px;
-      height: 32px;
-      transition: transform 0.3s ease;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 10px 20px;
+      background-color: #008c99;
+      color: white;
+      font-size: 1rem;
+      border-radius: 8px;
       cursor: pointer;
+      border: none;
     }
 
-    .social-icons img:hover {
-      transform: scale(1.2);
+    #music-toggle:hover {
+      background-color: #007b88;
     }
   </style>
 </head>
@@ -121,34 +119,31 @@
     </a>
   </div>
 
-  <!-- Pemutar lagu -->
+  <!-- Pemutar Musik -->
   <audio id="background-music" loop>
-    <source src="path/to/your/music.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+    <source src="background-music.mp3" type="audio/mp3" />
   </audio>
-
-  <!-- Tombol untuk memainkan/menjeda lagu -->
-  <button id="music-toggle" onclick="toggleMusic()">🎶 Play Music</button>
+  <button id="music-toggle">Play Music</button>
 
   <script>
-    const music = document.getElementById('background-music');
-    const musicToggleButton = document.getElementById('music-toggle');
+    // Pemutar musik dan kontrol tombol
+    const musicToggle = document.getElementById('music-toggle');
+    const backgroundMusic = document.getElementById('background-music');
 
-    // Fungsi untuk toggle musik
-    function toggleMusic() {
-      if (music.paused) {
-        music.play();
-        musicToggleButton.innerText = '🎶 Pause Music';
+    musicToggle.addEventListener('click', function () {
+      if (backgroundMusic.paused) {
+        backgroundMusic.play();
+        musicToggle.textContent = 'Pause Music';
       } else {
-        music.pause();
-        musicToggleButton.innerText = '🎶 Play Music';
+        backgroundMusic.pause();
+        musicToggle.textContent = 'Play Music';
       }
-    }
+    });
 
-    // Memulai musik otomatis saat halaman dimuat
-    window.onload = () => {
-      music.play();
-      musicToggleButton.innerText = '🎶 Pause Music';
+    // Memulai musik saat halaman dimuat
+    window.onload = function () {
+      backgroundMusic.play();
+      musicToggle.textContent = 'Pause Music';
     };
   </script>
 </body>
