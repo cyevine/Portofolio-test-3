@@ -55,9 +55,10 @@
 
     .character {
       position: absolute;
-      bottom: 200px;
-      right: 20px;
-      height: 60%;
+      bottom: 0;
+      right: 0;
+      max-height: 80vh;
+      max-width: 50vw;
       z-index: 1;
       display: none;
     }
@@ -151,12 +152,13 @@
       z-index: 10;
     }
 
-    /* === Tambahan untuk responsive design === */
+    /* Tambahan responsif untuk HP & tablet */
     @media (max-width: 768px) {
       .character {
-        height: 40%;
-        right: 10px;
-        bottom: 150px;
+        max-height: 50vh;
+        max-width: 50vw;
+        right: 5px;
+        bottom: 0;
       }
 
       .name-box {
@@ -260,7 +262,7 @@
       }, 500);
     }
 
-    window.onpopstate = function() {
+    window.onpopstate = function () {
       const lastPage = sessionStorage.getItem("lastPage");
       if (lastPage) {
         window.location.href = lastPage;
