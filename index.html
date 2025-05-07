@@ -143,79 +143,32 @@
       z-index: 10;
     }
 
-    /* Media Query untuk responsivitas */
+    /* Tambahan responsive */
     @media (max-width: 768px) {
-      .dialogue-box {
-        height: 180px;
-        padding: 16px;
-        font-size: 0.95rem;
-      }
-
-      .name-box {
-        font-size: 1.1rem;
-        padding: 10px 25px;
-        bottom: 215px;
-      }
-
-      .options-box {
-        bottom: 220px;
-        width: 90%;
-      }
-
-      .option-btn {
-        font-size: 1rem;
-        padding: 14px 20px;
-      }
-
-      .start-button {
-        font-size: 1rem;
-        padding: 16px 30px;
-      }
-
-      .character {
-        height: 50%;
-        bottom: 150px;
-      }
-    }
-
-    @media (max-width: 480px) {
-      .dialogue-box {
-        height: 160px;
-        padding: 14px;
-        font-size: 0.85rem;
-      }
-
-      .name-box {
-        font-size: 1rem;
-        padding: 8px 20px;
-        bottom: 210px;
-      }
-
-      .options-box {
-        bottom: 210px;
-        width: 95%;
-      }
-
-      .option-btn {
-        font-size: 0.95rem;
-        padding: 12px 18px;
-      }
-
-      .start-button {
-        font-size: 0.95rem;
-        padding: 14px 24px;
-      }
-
       .character {
         height: 45%;
-        bottom: 120px;
+        right: 10px;
       }
-    }
-
-    /* Peningkatan pada responsivitas gambar karakter */
-    @media (max-width: 480px) {
-      .character {
-        right: 10px;  /* Menjaga gambar agar lebih dekat ke layar pada perangkat kecil */
+      .dialogue-box {
+        height: 150px;
+        padding: 15px;
+        font-size: 0.9rem;
+      }
+      .name-box {
+        font-size: 1rem;
+        padding: 10px 20px;
+      }
+      .options-box {
+        gap: 8px;
+        width: 90%;
+      }
+      .option-btn {
+        font-size: 1rem;
+        padding: 15px 20px;
+      }
+      .start-button {
+        font-size: 1rem;
+        padding: 15px 30px;
       }
     }
   </style>
@@ -258,7 +211,7 @@
     }
 
     startButton.addEventListener('click', () => {
-      bgm.play();
+      bgm.play().catch((e) => console.log("Autoplay error:", e));
       audioToggle.textContent = '🔊';
       startButton.style.display = 'none';
       dialogueBox.style.display = 'block';
@@ -296,4 +249,10 @@
     // Fungsi untuk kembali ke halaman sebelumnya
     window.onpopstate = function() {
       const lastPage = sessionStorage.getItem("lastPage");
-      if (
+      if (lastPage) {
+        window.location.href = lastPage;
+      }
+    };
+  </script>
+</body>
+</html>
