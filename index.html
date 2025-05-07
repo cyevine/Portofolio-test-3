@@ -211,6 +211,13 @@
         bottom: 120px;
       }
     }
+
+    /* Peningkatan pada responsivitas gambar karakter */
+    @media (max-width: 480px) {
+      .character {
+        right: 10px;  /* Menjaga gambar agar lebih dekat ke layar pada perangkat kecil */
+      }
+    }
   </style>
 </head>
 <body>
@@ -289,10 +296,4 @@
     // Fungsi untuk kembali ke halaman sebelumnya
     window.onpopstate = function() {
       const lastPage = sessionStorage.getItem("lastPage");
-      if (lastPage) {
-        window.location.href = lastPage;
-      }
-    };
-  </script>
-</body>
-</html>
+      if (
