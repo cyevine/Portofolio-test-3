@@ -12,6 +12,7 @@
       overflow: hidden;
     }
 
+    /* Awan */
     .cloud {
       position: absolute;
       top: 50px;
@@ -53,16 +54,19 @@
       }
     }
 
+    /* Gambar karakter */
     .character {
       position: absolute;
       bottom: 20%;
       right: 10%;
+      width: 30%;
       height: auto;
-      width: 40%;
       z-index: 1;
       display: block;
+      max-width: 250px;
     }
 
+    /* Kotak dialog */
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -79,6 +83,7 @@
       z-index: 2;
     }
 
+    /* Kotak nama */
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -93,6 +98,7 @@
       display: block;
     }
 
+    /* Opsi pilihan */
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -122,6 +128,7 @@
       background-color: #e0f7fa;
     }
 
+    /* Kontrol audio */
     .audio-controls {
       position: absolute;
       top: 10px;
@@ -137,6 +144,7 @@
       cursor: pointer;
     }
 
+    /* Tombol mulai */
     .start-button {
       position: absolute;
       top: 50%;
@@ -152,13 +160,13 @@
       z-index: 10;
     }
 
-    /* Mobile Responsiveness */
+    /* Responsivitas untuk perangkat mobile */
     @media only screen and (max-width: 768px) {
       .character {
-        width: 60%;  /* Adjusting character image size for smaller screens */
+        width: 50%;
       }
       .dialogue-box {
-        bottom: 80px;
+        bottom: 100px;
         padding: 10px;
       }
       .name-box {
@@ -166,7 +174,7 @@
         padding: 10px 25px;
       }
       .options-box {
-        width: 100%;
+        width: 90%;
       }
       .start-button {
         padding: 15px 30px;
@@ -176,7 +184,7 @@
 
     @media only screen and (max-width: 480px) {
       .character {
-        width: 70%;
+        width: 60%;
       }
       .dialogue-box {
         height: auto;
@@ -195,19 +203,28 @@
   <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
   <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
 
+  <!-- Karakter -->
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
+  <!-- Nama -->
   <div class="name-box" id="nameBox">Cyevine</div>
+  <!-- Kotak dialog -->
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
+  <!-- Opsi Pilihan -->
   <div class="options-box" id="options">
     <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
     <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
     <button class="option-btn" onclick="goTo('gallery.html')">Mau liat portofoliomu dong</button>
   </div>
+  <!-- Kontrol Audio -->
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
+  <!-- Tombol Start -->
   <button class="start-button" id="startButton">Start</button>
+
+  <!-- Background Music -->
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
+
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
