@@ -116,9 +116,40 @@
     <a href="https://instagram.com/hudehellaryu" target="_blank">
       <img src="instagram.png" alt="Instagram" />
     </a>
-   <a href="https://discord.gg/b3n2GA4yPS" target="_blank">
+    <a href="https://discord.gg/b3n2GA4yPS" target="_blank">
       <img src="discord.svg" alt="Discord" />
     </a>
   </div>
+
+  <!-- Pemutar lagu -->
+  <audio id="background-music" loop>
+    <source src="path/to/your/music.mp3" type="audio/mp3">
+    Your browser does not support the audio element.
+  </audio>
+
+  <!-- Tombol untuk memainkan/menjeda lagu -->
+  <button id="music-toggle" onclick="toggleMusic()">🎶 Play Music</button>
+
+  <script>
+    const music = document.getElementById('background-music');
+    const musicToggleButton = document.getElementById('music-toggle');
+
+    // Fungsi untuk toggle musik
+    function toggleMusic() {
+      if (music.paused) {
+        music.play();
+        musicToggleButton.innerText = '🎶 Pause Music';
+      } else {
+        music.pause();
+        musicToggleButton.innerText = '🎶 Play Music';
+      }
+    }
+
+    // Memulai musik otomatis saat halaman dimuat
+    window.onload = () => {
+      music.play();
+      musicToggleButton.innerText = '🎶 Pause Music';
+    };
+  </script>
 </body>
 </html>
