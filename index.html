@@ -142,6 +142,75 @@
       cursor: pointer;
       z-index: 10;
     }
+
+    /* Media Query untuk responsivitas */
+    @media (max-width: 768px) {
+      .dialogue-box {
+        height: 180px;
+        padding: 16px;
+        font-size: 0.95rem;
+      }
+
+      .name-box {
+        font-size: 1.1rem;
+        padding: 10px 25px;
+        bottom: 215px;
+      }
+
+      .options-box {
+        bottom: 220px;
+        width: 90%;
+      }
+
+      .option-btn {
+        font-size: 1rem;
+        padding: 14px 20px;
+      }
+
+      .start-button {
+        font-size: 1rem;
+        padding: 16px 30px;
+      }
+
+      .character {
+        height: 50%;
+        bottom: 150px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .dialogue-box {
+        height: 160px;
+        padding: 14px;
+        font-size: 0.85rem;
+      }
+
+      .name-box {
+        font-size: 1rem;
+        padding: 8px 20px;
+        bottom: 210px;
+      }
+
+      .options-box {
+        bottom: 210px;
+        width: 95%;
+      }
+
+      .option-btn {
+        font-size: 0.95rem;
+        padding: 12px 18px;
+      }
+
+      .start-button {
+        font-size: 0.95rem;
+        padding: 14px 24px;
+      }
+
+      .character {
+        height: 45%;
+        bottom: 120px;
+      }
+    }
   </style>
 </head>
 <body>
