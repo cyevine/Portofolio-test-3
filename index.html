@@ -12,7 +12,6 @@
       overflow: hidden;
     }
 
-    /* Awan */
     .cloud {
       position: absolute;
       top: 50px;
@@ -54,7 +53,6 @@
       }
     }
 
-    /* Gambar OC */
     .character {
       position: absolute;
       bottom: 200px;
@@ -63,8 +61,6 @@
       z-index: 1;
       display: none;
     }
-
-    /* Kotak dialog */
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -80,8 +76,6 @@
       cursor: pointer;
       z-index: 2;
     }
-
-    /* Nama karakter */
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -95,8 +89,6 @@
       z-index: 2;
       display: none;
     }
-
-    /* Opsi */
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -109,7 +101,6 @@
       width: 80%;
       max-width: 600px;
     }
-
     .option-btn {
       background-color: white;
       color: black;
@@ -121,18 +112,14 @@
       font-size: 1.1rem;
       transition: background-color 0.3s;
     }
-
     .option-btn:hover {
       background-color: #e0f7fa;
     }
-
-    /* Kontrol audio */
     .audio-controls {
       position: absolute;
       top: 10px;
       right: 10px;
     }
-
     .audio-controls button {
       background: white;
       border: 2px solid #008c99;
@@ -141,8 +128,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
-    /* Tombol Start */
     .start-button {
       position: absolute;
       top: 50%;
@@ -156,55 +141,6 @@
       font-weight: bold;
       cursor: pointer;
       z-index: 10;
-    }
-
-    /* Responsivitas untuk layar kecil */
-    @media screen and (max-width: 768px) {
-      .character {
-        height: 50%;
-        right: 10px;
-      }
-      
-      .dialogue-box {
-        height: 150px;
-        padding: 15px;
-      }
-      
-      .name-box {
-        font-size: 1.1rem;
-        padding: 10px 20px;
-      }
-      
-      .options-box {
-        bottom: 180px;
-        width: 90%;
-      }
-
-      .option-btn {
-        padding: 15px 20px;
-        font-size: 1rem;
-      }
-
-      .start-button {
-        padding: 15px 30px;
-        font-size: 1rem;
-      }
-    }
-
-    /* Responsivitas untuk tablet */
-    @media screen and (max-width: 1024px) {
-      .character {
-        height: 55%;
-      }
-
-      .dialogue-box {
-        height: 180px;
-        padding: 18px;
-      }
-
-      .start-button {
-        padding: 18px 36px;
-      }
     }
   </style>
 </head>
@@ -242,4 +178,52 @@
       dialogueBox.style.display = 'block';
       ocImage.style.display = 'block';
       nameBox.style.display = 'block';
-      optionsBox.style.display = '
+      optionsBox.style.display = 'flex';
+    }
+
+    startButton.addEventListener('click', () => {
+      bgm.play();
+      audioToggle.textContent = '🔊';
+      startButton.style.display = 'none';
+      dialogueBox.style.display = 'block';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
+      sessionStorage.setItem("started", "true");
+    });
+
+    dialogueBox.addEventListener('click', () => {
+      if (optionsBox.style.display !== 'flex') {
+        optionsBox.style.display = 'flex';
+        dialogueBox.style.pointerEvents = 'none';
+      }
+    });
+
+    function toggleAudio() {
+      if (bgm.paused) {
+        bgm.play();
+        audioToggle.textContent = '🔊';
+      } else {
+        bgm.pause();
+        audioToggle.textContent = '🔇';
+      }
+    }
+
+    function goTo(page) {
+      sessionStorage.setItem("lastPage", page);  // Menyimpan halaman terakhir yang dikunjungi
+      document.body.style.transition = 'opacity 0.5s';
+      document.body.style.opacity = 0;
+      setTimeout(() => {
+        window.location.href = page;
+      }, 500);
+    }
+
+    // Fungsi untuk kembali ke halaman sebelumnya
+    window.onpopstate = function() {
+      const lastPage = sessionStorage.getItem("lastPage");
+      if (lastPage) {
+        window.location.href = lastPage;
+      }
+    };
+  </script>
+</body>
+</html>
