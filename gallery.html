@@ -61,7 +61,7 @@
       max-height: 80%;
       border-radius: 10px;
     }
-    .modal:target {
+    .modal.show {
       display: flex;
     }
   </style>
@@ -71,60 +71,52 @@
   <p>Nah, boleh diliat-liat dulu nich!</p>
 
   <div class="gallery">
-    <a href="#img1"><img src="Napoleon.jpeg" alt="Karya 1" /></a>
-    <a href="#img2"><img src="OC Chloe.jpeg" alt="Karya 2" /></a>
-    <a href="#img3"><img src="Poster.jpeg" alt="Karya 3" /></a>
-    <a href="#img4"><img src="ivti.jpeg" alt="Karya 4" /></a>
-    <a href="#img5"><img src="deadplate.jpeg" alt="Karya 5" /></a>
-    <a href="#img6"><img src="mammon.jpeg" alt="Karya 6" /></a>
-    <a href="#img7"><img src="whale.jpeg" alt="Karya 7" /></a>
-    <a href="#img8"><img src="hewwo.jpeg" alt="Karya 8" /></a>
-    <a href="#img9"><img src="art1.jpeg" alt="Karya 9" /></a>
-    <a href="#img10"><img src="akrilik.jpeg" alt="Karya 10" /></a>
-    <a href="#img11"><img src="sketchver.jpeg" alt="Karya 11" /></a>
-    <a href="#img12"><img src="y2k.png" alt="Karya 12" /></a>
-    <!-- Tambah gambar sesuai kebutuhan -->
+    <a href="#" data-modal="img1"><img src="Napoleon.jpeg" alt="Karya 1" /></a>
+    <a href="#" data-modal="img2"><img src="OC Chloe.jpeg" alt="Karya 2" /></a>
+    <a href="#" data-modal="img3"><img src="Poster.jpeg" alt="Karya 3" /></a>
+    <a href="#" data-modal="img4"><img src="ivti.jpeg" alt="Karya 4" /></a>
+    <a href="#" data-modal="img5"><img src="deadplate.jpeg" alt="Karya 5" /></a>
+    <a href="#" data-modal="img6"><img src="mammon.jpeg" alt="Karya 6" /></a>
+    <a href="#" data-modal="img7"><img src="whale.jpeg" alt="Karya 7" /></a>
+    <a href="#" data-modal="img8"><img src="hewwo.jpeg" alt="Karya 8" /></a>
+    <a href="#" data-modal="img9"><img src="art1.jpeg" alt="Karya 9" /></a>
+    <a href="#" data-modal="img10"><img src="akrilik.jpeg" alt="Karya 10" /></a>
+    <a href="#" data-modal="img11"><img src="sketchver.jpeg" alt="Karya 11" /></a>
+    <a href="#" data-modal="img12"><img src="y2k.png" alt="Karya 12" /></a>
   </div>
 
   <!-- Modal popups -->
-  <div id="img1" class="modal" onclick="location.href='#'">
-    <img src="Napoleon.jpeg" alt="Karya 1" />
-  </div>
-  <div id="img2" class="modal" onclick="location.href='#'">
-    <img src="OC Chloe.jpeg" alt="Karya 2" />
-  </div>
-  <div id="img3" class="modal" onclick="location.href='#'">
-    <img src="Poster.jpeg" alt="Karya 3" />
-  </div>
-  <div id="img4" class="modal" onclick="location.href='#'">
-  <img src="ivti.jpeg" alt="Karya 4" />
-  </div>
-   <div id="img5" class="modal" onclick="location.href='#'">
-    <img src="deadplate.jpeg" alt="Karya 5" />
-  </div>
-   <div id="img6" class="modal" onclick="location.href='#'">
-    <img src="mammon.jpeg" alt="Karya 6" />
-  </div>
-   <div id="img7" class="modal" onclick="location.href='#'">
-    <img src="whale.jpeg" alt="Karya 7" />
-  </div>
-   <div id="img8" class="modal" onclick="location.href='#'">
-    <img src="hewwo.jpeg" alt="Karya 8" />
-  </div>
-   <div id="img9" class="modal" onclick="location.href='#'">
-    <img src="art1.jpeg" alt="Karya 9" />
-  </div>
-   <div id="img10" class="modal" onclick="location.href='#'">
-    <img src="akrilik.jpeg" alt="Karya 10" />
-  </div>
-   <div id="img11" class="modal" onclick="location.href='#'">
-    <img src="sketchver.jpeg" alt="Karya 11" />
-  </div>
-   <div id="img12" class="modal" onclick="location.href='#'">
-    <img src="y2k.png" alt="Karya 12" />
-  </div>
-
+  <div id="img1" class="modal"><img src="Napoleon.jpeg" alt="Karya 1" /></div>
+  <div id="img2" class="modal"><img src="OC Chloe.jpeg" alt="Karya 2" /></div>
+  <div id="img3" class="modal"><img src="Poster.jpeg" alt="Karya 3" /></div>
+  <div id="img4" class="modal"><img src="ivti.jpeg" alt="Karya 4" /></div>
+  <div id="img5" class="modal"><img src="deadplate.jpeg" alt="Karya 5" /></div>
+  <div id="img6" class="modal"><img src="mammon.jpeg" alt="Karya 6" /></div>
+  <div id="img7" class="modal"><img src="whale.jpeg" alt="Karya 7" /></div>
+  <div id="img8" class="modal"><img src="hewwo.jpeg" alt="Karya 8" /></div>
+  <div id="img9" class="modal"><img src="art1.jpeg" alt="Karya 9" /></div>
+  <div id="img10" class="modal"><img src="akrilik.jpeg" alt="Karya 10" /></div>
+  <div id="img11" class="modal"><img src="sketchver.jpeg" alt="Karya 11" /></div>
+  <div id="img12" class="modal"><img src="y2k.png" alt="Karya 12" /></div>
 
   <a href="index.html">⬅ Kembali</a>
+
+  <script>
+    // Handle open modal
+    document.querySelectorAll('[data-modal]').forEach(link => {
+      link.addEventListener('click', function (e) {
+        e.preventDefault();
+        const modalId = this.getAttribute('data-modal');
+        document.getElementById(modalId).classList.add('show');
+      });
+    });
+
+    // Handle close modal when clicked anywhere
+    document.querySelectorAll('.modal').forEach(modal => {
+      modal.addEventListener('click', function () {
+        this.classList.remove('show');
+      });
+    });
+  </script>
 </body>
 </html>
