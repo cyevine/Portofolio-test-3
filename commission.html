@@ -67,9 +67,8 @@
     /* Style untuk tombol musik */
     #music-toggle {
       position: fixed;
-      bottom: 20px;
-      left: 50%;
-      transform: translateX(-50%);
+      top: 20px;
+      right: 20px;
       padding: 12px 24px;
       background-color: #c770a2; /* Warna yang sesuai dengan index.html */
       color: white;
@@ -82,6 +81,21 @@
 
     #music-toggle:hover {
       background-color: #9e4e78; /* Efek hover */
+    }
+
+    /* Style tombol sosial media */
+    .social-buttons a {
+      font-size: 16px; /* Ukuran tetap seperti sebelumnya */
+      padding: 10px;
+      margin: 5px;
+      background-color: #007acc;
+      color: white;
+      border-radius: 50%;
+      text-decoration: none;
+    }
+
+    .social-buttons a:hover {
+      background-color: #005f8c;
     }
   </style>
 </head>
@@ -112,6 +126,13 @@
     <source src="background-music.mp3" type="audio/mp3" />
   </audio>
   <button id="music-toggle">Play Music</button>
+
+  <!-- Tombol Sosial Media -->
+  <div class="social-buttons">
+    <a href="https://facebook.com" target="_blank">F</a>
+    <a href="https://twitter.com" target="_blank">T</a>
+    <a href="https://instagram.com" target="_blank">I</a>
+  </div>
 
   <script>
     // Pemutar musik dan kontrol tombol
