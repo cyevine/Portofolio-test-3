@@ -54,16 +54,14 @@
       }
     }
 
-    /* Gambar karakter */
+    /* Gambar OC */
     .character {
       position: absolute;
-      bottom: 20%;
-      right: 10%;
-      width: 30%;
-      height: auto;
+      bottom: 200px;
+      right: 20px;
+      height: 60%;
       z-index: 1;
-      display: block;
-      max-width: 250px;
+      display: none;
     }
 
     /* Kotak dialog */
@@ -83,7 +81,7 @@
       z-index: 2;
     }
 
-    /* Kotak nama */
+    /* Nama karakter */
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -95,10 +93,10 @@
       font-size: 1.3rem;
       border: 3px solid #008c99;
       z-index: 2;
-      display: block;
+      display: none;
     }
 
-    /* Opsi pilihan */
+    /* Opsi */
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -144,7 +142,7 @@
       cursor: pointer;
     }
 
-    /* Tombol mulai */
+    /* Tombol Start */
     .start-button {
       position: absolute;
       top: 50%;
@@ -160,41 +158,54 @@
       z-index: 10;
     }
 
-    /* Responsivitas untuk perangkat mobile */
-    @media only screen and (max-width: 768px) {
+    /* Responsivitas untuk layar kecil */
+    @media screen and (max-width: 768px) {
       .character {
-        width: 50%;
+        height: 50%;
+        right: 10px;
       }
+      
       .dialogue-box {
-        bottom: 100px;
-        padding: 10px;
+        height: 150px;
+        padding: 15px;
       }
+      
       .name-box {
         font-size: 1.1rem;
-        padding: 10px 25px;
+        padding: 10px 20px;
       }
+      
       .options-box {
+        bottom: 180px;
         width: 90%;
       }
+
+      .option-btn {
+        padding: 15px 20px;
+        font-size: 1rem;
+      }
+
       .start-button {
         padding: 15px 30px;
         font-size: 1rem;
       }
     }
 
-    @media only screen and (max-width: 480px) {
+    /* Responsivitas untuk tablet */
+    @media screen and (max-width: 1024px) {
       .character {
-        width: 60%;
+        height: 55%;
       }
+
       .dialogue-box {
-        height: auto;
-        padding: 10px;
+        height: 180px;
+        padding: 18px;
       }
-      .options-box {
-        width: 100%;
+
+      .start-button {
+        padding: 18px 36px;
       }
     }
-
   </style>
 </head>
 <body>
@@ -203,28 +214,19 @@
   <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
   <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
 
-  <!-- Karakter -->
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
-  <!-- Nama -->
   <div class="name-box" id="nameBox">Cyevine</div>
-  <!-- Kotak dialog -->
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
-  <!-- Opsi Pilihan -->
   <div class="options-box" id="options">
     <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
     <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
     <button class="option-btn" onclick="goTo('gallery.html')">Mau liat portofoliomu dong</button>
   </div>
-  <!-- Kontrol Audio -->
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
-  <!-- Tombol Start -->
   <button class="start-button" id="startButton">Start</button>
-
-  <!-- Background Music -->
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
-
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
@@ -240,52 +242,4 @@
       dialogueBox.style.display = 'block';
       ocImage.style.display = 'block';
       nameBox.style.display = 'block';
-      optionsBox.style.display = 'flex';
-    }
-
-    startButton.addEventListener('click', () => {
-      bgm.play();
-      audioToggle.textContent = '🔊';
-      startButton.style.display = 'none';
-      dialogueBox.style.display = 'block';
-      ocImage.style.display = 'block';
-      nameBox.style.display = 'block';
-      sessionStorage.setItem("started", "true");
-    });
-
-    dialogueBox.addEventListener('click', () => {
-      if (optionsBox.style.display !== 'flex') {
-        optionsBox.style.display = 'flex';
-        dialogueBox.style.pointerEvents = 'none';
-      }
-    });
-
-    function toggleAudio() {
-      if (bgm.paused) {
-        bgm.play();
-        audioToggle.textContent = '🔊';
-      } else {
-        bgm.pause();
-        audioToggle.textContent = '🔇';
-      }
-    }
-
-    function goTo(page) {
-      sessionStorage.setItem("lastPage", page);  // Menyimpan halaman terakhir yang dikunjungi
-      document.body.style.transition = 'opacity 0.5s';
-      document.body.style.opacity = 0;
-      setTimeout(() => {
-        window.location.href = page;
-      }, 500);
-    }
-
-    // Fungsi untuk kembali ke halaman sebelumnya
-    window.onpopstate = function() {
-      const lastPage = sessionStorage.getItem("lastPage");
-      if (lastPage) {
-        window.location.href = lastPage;
-      }
-    };
-  </script>
-</body>
-</html>
+      optionsBox.style.display = '
