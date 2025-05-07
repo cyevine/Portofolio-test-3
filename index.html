@@ -61,6 +61,7 @@
       z-index: 1;
       display: none;
     }
+
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -76,6 +77,7 @@
       cursor: pointer;
       z-index: 2;
     }
+
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -89,6 +91,7 @@
       z-index: 2;
       display: none;
     }
+
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -101,6 +104,7 @@
       width: 80%;
       max-width: 600px;
     }
+
     .option-btn {
       background-color: white;
       color: black;
@@ -112,14 +116,17 @@
       font-size: 1.1rem;
       transition: background-color 0.3s;
     }
+
     .option-btn:hover {
       background-color: #e0f7fa;
     }
+
     .audio-controls {
       position: absolute;
       top: 10px;
       right: 10px;
     }
+
     .audio-controls button {
       background: white;
       border: 2px solid #008c99;
@@ -128,6 +135,7 @@
       font-weight: bold;
       cursor: pointer;
     }
+
     .start-button {
       position: absolute;
       top: 50%;
@@ -143,29 +151,36 @@
       z-index: 10;
     }
 
-    /* Tambahan responsive */
+    /* === Tambahan untuk responsive design === */
     @media (max-width: 768px) {
       .character {
-        height: 45%;
+        height: 40%;
         right: 10px;
+        bottom: 150px;
       }
-      .dialogue-box {
-        height: 150px;
-        padding: 15px;
-        font-size: 0.9rem;
-      }
+
       .name-box {
         font-size: 1rem;
         padding: 10px 20px;
+        bottom: 160px;
       }
+
+      .dialogue-box {
+        height: 140px;
+        font-size: 0.9rem;
+        padding: 15px;
+      }
+
       .options-box {
-        gap: 8px;
-        width: 90%;
+        width: 95%;
+        bottom: 180px;
       }
+
       .option-btn {
+        padding: 14px 20px;
         font-size: 1rem;
-        padding: 15px 20px;
       }
+
       .start-button {
         font-size: 1rem;
         padding: 15px 30px;
@@ -201,7 +216,6 @@
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
 
-    // Cek apakah halaman sudah dimulai sebelumnya
     if (sessionStorage.getItem("started") === "true") {
       startButton.style.display = 'none';
       dialogueBox.style.display = 'block';
@@ -211,7 +225,7 @@
     }
 
     startButton.addEventListener('click', () => {
-      bgm.play().catch((e) => console.log("Autoplay error:", e));
+      bgm.play();
       audioToggle.textContent = '🔊';
       startButton.style.display = 'none';
       dialogueBox.style.display = 'block';
@@ -238,7 +252,7 @@
     }
 
     function goTo(page) {
-      sessionStorage.setItem("lastPage", page);  // Menyimpan halaman terakhir yang dikunjungi
+      sessionStorage.setItem("lastPage", page);
       document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
       setTimeout(() => {
@@ -246,7 +260,6 @@
       }, 500);
     }
 
-    // Fungsi untuk kembali ke halaman sebelumnya
     window.onpopstate = function() {
       const lastPage = sessionStorage.getItem("lastPage");
       if (lastPage) {
