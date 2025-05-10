@@ -163,6 +163,7 @@
   </div>
   <button class="start-button" id="startButton">Start</button>
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
+
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
@@ -171,6 +172,37 @@
     const startButton = document.getElementById('startButton');
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
+
+    // Tambahan script dialog dan ekspresi
+    const script = [
+      {
+        text: "Welcome! Kesini mau ngapain nich?",
+        image: "oe talking.png"
+      },
+      {
+        text: "WAITTT.... aku tau kamu mau apa",
+        image: "smirk 1.png"
+      },
+      {
+        text: "........",
+        image: "thinking.png"
+      },
+      {
+        text: "..................",
+        image: "ce smile.png"
+      },
+      {
+        text: "apa ya...hehe",
+        image: "smirk 2.png"
+      }
+    ];
+    let currentLine = 0;
+
+    function updateDialogue() {
+      const line = script[currentLine];
+      dialogueBox.textContent = line.text;
+      ocImage.src = line.image;
+    }
 
     // Cek apakah halaman sudah dimulai sebelumnya
     if (sessionStorage.getItem("started") === "true") {
@@ -188,11 +220,15 @@
       dialogueBox.style.display = 'block';
       ocImage.style.display = 'block';
       nameBox.style.display = 'block';
+      updateDialogue(); // tampilkan dialog pertama
       sessionStorage.setItem("started", "true");
     });
 
     dialogueBox.addEventListener('click', () => {
-      if (optionsBox.style.display !== 'flex') {
+      currentLine++;
+      if (currentLine < script.length) {
+        updateDialogue();
+      } else {
         optionsBox.style.display = 'flex';
         dialogueBox.style.pointerEvents = 'none';
       }
