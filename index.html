@@ -59,7 +59,7 @@
       right: 20px;
       height: 60%;
       z-index: 1;
-      display: none;
+      display: block;
     }
 
     .dialogue-box {
@@ -76,6 +76,7 @@
       transition: opacity 0.5s ease-in-out;
       cursor: pointer;
       z-index: 2;
+      font-size: 1.2rem;
     }
 
     .name-box {
@@ -100,7 +101,7 @@
       flex-direction: column;
       gap: 12px;
       z-index: 2;
-      width: 300px;
+      width: 320px; /* Lebar opsi diperbesar */
       max-width: 80%;
     }
 
@@ -191,19 +192,19 @@
         text: "...........",
         img: "thinking.png"
       },
-      {
+       {
         text: "....................",
         img: "yippie.png"
       },
-      {
+       {
         text: ".............................",
         img: "ce smile.png"
-      },
-      {
+       },
+       {
         text: "Welcomeeee!! ke sini mau ngapain nieee??",
         img: "ce talking.png"
-      }
     ];
+
 
     let currentLine = 0;
 
@@ -229,7 +230,7 @@
       if (currentLine < dialogues.length - 1) {
         currentLine++;
         dialogueBox.textContent = dialogues[currentLine].text;
-        ocImage.src = dialogues[currentLine].img;  // Pastikan ekspresi berubah
+        ocImage.src = dialogues[currentLine].img;
       } else {
         if (optionsBox.style.display !== 'flex') {
           optionsBox.style.display = 'flex';
