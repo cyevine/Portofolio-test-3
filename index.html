@@ -172,31 +172,48 @@
     const nameBox = document.getElementById('nameBox');
     const ocImage = document.getElementById('ocImage');
 
-    // Cek apakah halaman sudah dimulai sebelumnya
+    const dialogues = [
+      { text: "Welcome! Kesini mau ngapain nich?", image: "oe talking.png" },
+      { text: "WAITTTTTTT.....biar kutebak dulu.", image: "smirk 1.png" },
+      { text: ".........", image: "thinking.png" },
+      { text: "................", image: "yippie.png" },
+      { text: "...............................", image: "ce smile.png" },
+      { text: "...........Welcome!!! Kesini mau ngapaain nich???", image: "ce talking.png" }
+    ];
+
+    let currentDialogue = 0;
+
     if (sessionStorage.getItem("started") === "true") {
       startButton.style.display = 'none';
-      dialogueBox.style.display = 'block';
-      ocImage.style.display = 'block';
-      nameBox.style.display = 'block';
-      optionsBox.style.display = 'flex';
+      showDialogue();
     }
 
     startButton.addEventListener('click', () => {
       bgm.play();
       audioToggle.textContent = '🔊';
       startButton.style.display = 'none';
-      dialogueBox.style.display = 'block';
-      ocImage.style.display = 'block';
-      nameBox.style.display = 'block';
       sessionStorage.setItem("started", "true");
+      showDialogue();
     });
 
     dialogueBox.addEventListener('click', () => {
-      if (optionsBox.style.display !== 'flex') {
-        optionsBox.style.display = 'flex';
+      currentDialogue++;
+      if (currentDialogue < dialogues.length) {
+        showDialogue();
+      } else {
         dialogueBox.style.pointerEvents = 'none';
+        optionsBox.style.display = 'flex';
       }
     });
+
+    function showDialogue() {
+      const dialogue = dialogues[currentDialogue];
+      dialogueBox.textContent = dialogue.text;
+      ocImage.src = dialogue.image;
+      dialogueBox.style.display = 'block';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
+    }
 
     function toggleAudio() {
       if (bgm.paused) {
@@ -209,7 +226,7 @@
     }
 
     function goTo(page) {
-      sessionStorage.setItem("lastPage", page);  // Menyimpan halaman terakhir yang dikunjungi
+      sessionStorage.setItem("lastPage", page);
       document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
       setTimeout(() => {
@@ -217,7 +234,6 @@
       }, 500);
     }
 
-    // Fungsi untuk kembali ke halaman sebelumnya
     window.onpopstate = function() {
       const lastPage = sessionStorage.getItem("lastPage");
       if (lastPage) {
