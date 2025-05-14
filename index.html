@@ -145,7 +145,6 @@
   </style>
 </head>
 <body>
-  <!-- Awan -->
   <div class="cloud"></div>
   <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
   <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
@@ -185,7 +184,15 @@
 
     if (sessionStorage.getItem("started") === "true") {
       startButton.style.display = 'none';
-      showDialogue();
+      if (sessionStorage.getItem("skipDialogue") === "true") {
+        ocImage.src = "ce talking.png";
+        ocImage.style.display = 'block';
+        nameBox.style.display = 'block';
+        dialogueBox.style.display = 'none';
+        optionsBox.style.display = 'flex';
+      } else {
+        showDialogue();
+      }
     }
 
     startButton.addEventListener('click', () => {
@@ -193,6 +200,7 @@
       audioToggle.textContent = '🔊';
       startButton.style.display = 'none';
       sessionStorage.setItem("started", "true");
+      sessionStorage.setItem("skipDialogue", "false");
       showDialogue();
     });
 
@@ -227,6 +235,7 @@
 
     function goTo(page) {
       sessionStorage.setItem("lastPage", page);
+      sessionStorage.setItem("skipDialogue", "true");
       document.body.style.transition = 'opacity 0.5s';
       document.body.style.opacity = 0;
       setTimeout(() => {
