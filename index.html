@@ -53,24 +53,14 @@
       }
     }
 
-    .character-container {
+    .character {
       position: absolute;
-      bottom: 0;
-      right: 50px;
-      height: 60vh;
-      width: auto;
-      max-height: 100%;
+      bottom: 200px;
+      right: -50px;
+      height: 60%;
       z-index: 1;
       display: none;
     }
-
-    .character {
-      height: 100%;
-      width: auto;
-      object-fit: contain;
-      display: block;
-    }
-
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -86,7 +76,6 @@
       cursor: pointer;
       z-index: 2;
     }
-
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -100,7 +89,6 @@
       z-index: 2;
       display: none;
     }
-
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -113,7 +101,6 @@
       width: 80%;
       max-width: 600px;
     }
-
     .option-btn {
       background-color: white;
       color: black;
@@ -125,17 +112,14 @@
       font-size: 1.1rem;
       transition: background-color 0.3s;
     }
-
     .option-btn:hover {
       background-color: #e0f7fa;
     }
-
     .audio-controls {
       position: absolute;
       top: 10px;
       right: 10px;
     }
-
     .audio-controls button {
       background: white;
       border: 2px solid #008c99;
@@ -144,7 +128,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .start-button {
       position: absolute;
       top: 50%;
@@ -167,35 +150,19 @@
   <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
   <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
 
-  <!-- Karakter -->
-  <div class="character-container">
-    <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
-  </div>
-
-  <!-- Nama Karakter -->
+  <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
-
-  <!-- Dialog Box -->
   <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
-
-  <!-- Opsi Pilihan -->
   <div class="options-box" id="options">
     <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
     <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
     <button class="option-btn" onclick="goTo('gallery.html')">Mau liat portofoliomu dong</button>
   </div>
-
-  <!-- Kontrol Audio -->
   <div class="audio-controls">
     <button onclick="toggleAudio()" id="audioToggle">🔊</button>
   </div>
-
-  <!-- Tombol Mulai -->
   <button class="start-button" id="startButton">Start</button>
-
-  <!-- Background Music -->
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
-
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
