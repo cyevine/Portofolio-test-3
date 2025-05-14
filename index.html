@@ -14,42 +14,20 @@
 
     .cloud {
       position: absolute;
-      top: 50px;
-      left: -200px;
+      left: -300px;
+      animation: floatCloud 40s linear infinite;
       width: 200px;
-      height: 80px;
-      background: white;
-      border-radius: 100px;
-      opacity: 1;
-      animation: floatCloud 20s linear infinite;
+      height: auto;
+      opacity: 0.9;
       z-index: 0;
-    }
-
-    .cloud::before,
-    .cloud::after {
-      content: '';
-      position: absolute;
-      background: white;
-      width: 100px;
-      height: 100px;
-      top: -30px;
-      left: 30px;
-      border-radius: 50%;
-    }
-
-    .cloud::after {
-      width: 120px;
-      height: 120px;
-      top: -40px;
-      left: 90px;
     }
 
     @keyframes floatCloud {
       0% {
-        transform: translateX(-300px);
+        transform: translateX(0);
       }
       100% {
-        transform: translateX(110vw);
+        transform: translateX(130vw);
       }
     }
 
@@ -145,9 +123,11 @@
   </style>
 </head>
 <body>
-  <div class="cloud"></div>
-  <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
-  <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
+  <!-- CLOUDS WITH CUSTOM IMAGES -->
+  <img src="awan1.png" class="cloud" style="top: 50px; animation-delay: 0s;">
+  <img src="awan2.png" class="cloud" style="top: 120px; animation-delay: 5s;">
+  <img src="awan3.png" class="cloud" style="top: 200px; animation-delay: 10s;">
+  <img src="awan4.png" class="cloud" style="top: 280px; animation-delay: 15s;">
 
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
