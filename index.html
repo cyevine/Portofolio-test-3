@@ -61,7 +61,6 @@
       z-index: 1;
       display: none;
     }
-
     .dialogue-box {
       position: absolute;
       bottom: 20px;
@@ -76,9 +75,7 @@
       transition: opacity 0.5s ease-in-out;
       cursor: pointer;
       z-index: 2;
-      display: none;
     }
-
     .name-box {
       position: absolute;
       bottom: 230px;
@@ -92,7 +89,6 @@
       z-index: 2;
       display: none;
     }
-
     .options-box {
       position: absolute;
       bottom: 240px;
@@ -105,7 +101,6 @@
       width: 80%;
       max-width: 600px;
     }
-
     .option-btn {
       background-color: white;
       color: black;
@@ -117,17 +112,14 @@
       font-size: 1.1rem;
       transition: background-color 0.3s;
     }
-
     .option-btn:hover {
       background-color: #e0f7fa;
     }
-
     .audio-controls {
       position: absolute;
       top: 10px;
       right: 10px;
     }
-
     .audio-controls button {
       background: white;
       border: 2px solid #008c99;
@@ -136,7 +128,6 @@
       font-weight: bold;
       cursor: pointer;
     }
-
     .start-button {
       position: absolute;
       top: 50%;
@@ -154,14 +145,13 @@
   </style>
 </head>
 <body>
-  <!-- Awan -->
   <div class="cloud"></div>
   <div class="cloud" style="top: 120px; animation-delay: 15s;"></div>
   <div class="cloud" style="top: 200px; animation-delay: 30s;"></div>
 
   <img src="oe talking.png" alt="OC" class="character" id="ocImage" />
   <div class="name-box" id="nameBox">Cyevine</div>
-  <div class="dialogue-box" id="dialogue">Welcome! Kesini mau ngapain nich?</div>
+  <div class="dialogue-box" id="dialogue" style="display: none;">Welcome! Kesini mau ngapain nich?</div>
   <div class="options-box" id="options">
     <button class="option-btn" onclick="goTo('commission.html')">Mau komisi dong</button>
     <button class="option-btn" onclick="goTo('wip.html')">Mau liat WIP-mu nich</button>
@@ -172,7 +162,6 @@
   </div>
   <button class="start-button" id="startButton">Start</button>
   <audio id="bgm" src="Dosi & Aisake - Cruising  Lofi  NCS - Copyright Free Music.mp3" loop></audio>
-
   <script>
     const bgm = document.getElementById('bgm');
     const audioToggle = document.getElementById('audioToggle');
@@ -196,12 +185,11 @@
     if (sessionStorage.getItem("started") === "true") {
       startButton.style.display = 'none';
       if (sessionStorage.getItem("skipDialogue") === "true") {
-        ocImage.src = "ce talking.png"; // Optional: default image for options
+        ocImage.src = "ce talking.png";
         ocImage.style.display = 'block';
         nameBox.style.display = 'block';
+        dialogueBox.style.display = 'none';
         optionsBox.style.display = 'flex';
-        dialogueBox.style.display = 'none'; // Hide dialogue box
-        nameBox.style.display = 'block';
       } else {
         showDialogue();
       }
@@ -212,7 +200,7 @@
       audioToggle.textContent = '🔊';
       startButton.style.display = 'none';
       sessionStorage.setItem("started", "true");
-      sessionStorage.removeItem("skipDialogue");
+      sessionStorage.setItem("skipDialogue", "false");
       showDialogue();
     });
 
@@ -222,7 +210,6 @@
         showDialogue();
       } else {
         dialogueBox.style.pointerEvents = 'none';
-        dialogueBox.style.display = 'none';
         optionsBox.style.display = 'flex';
       }
     });
@@ -256,7 +243,7 @@
       }, 500);
     }
 
-    window.onpopstate = function () {
+    window.onpopstate = function() {
       const lastPage = sessionStorage.getItem("lastPage");
       if (lastPage) {
         window.location.href = lastPage;
