@@ -193,20 +193,21 @@
 
     let currentDialogue = 0;
 
+    // Jika pengunjung kembali dari halaman lain
     if (sessionStorage.getItem("started") === "true") {
       startButton.style.display = 'none';
+      ocImage.style.display = 'block';
+      nameBox.style.display = 'block';
       if (sessionStorage.getItem("skipDialogue") === "true") {
-        ocImage.src = "ce talking.png"; // Optional: default image for options
-        ocImage.style.display = 'block';
-        nameBox.style.display = 'block';
+        ocImage.src = "ce talking.png";
         optionsBox.style.display = 'flex';
-        dialogueBox.style.display = 'none'; // Hide dialogue box
-        nameBox.style.display = 'block';
+        dialogueBox.style.display = 'none';
       } else {
         showDialogue();
       }
     }
 
+    // Event start button
     startButton.addEventListener('click', () => {
       bgm.play();
       audioToggle.textContent = '🔊';
@@ -216,6 +217,7 @@
       showDialogue();
     });
 
+    // Event click pada dialog box
     dialogueBox.addEventListener('click', () => {
       currentDialogue++;
       if (currentDialogue < dialogues.length) {
